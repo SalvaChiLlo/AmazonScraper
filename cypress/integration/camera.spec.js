@@ -85,7 +85,7 @@ describe('visitamos pccomponentes para obtener datos de smartphones', () => {
 
       cy.get('body').then(() => {
         console.log(product)
-        cy.writeFile(`./Laptop/${product.title.substring(0, 25).replace('/', '').trim()}.json`, JSON.stringify(product))
+        cy.writeFile(`./camera/${product.title.substring(0, 25).replace('/', '').trim()}.json`, JSON.stringify(product))
       })
       visit();
     })
@@ -93,7 +93,7 @@ describe('visitamos pccomponentes para obtener datos de smartphones', () => {
 })
 
 function visit() {
-  cy.visit('https://www.amazon.es/gp/bestsellers/computers/938008031?ref_=Oct_d_obs_S&pd_rd_w=v6FFy&pf_rd_p=62dfbf75-5eb5-4489-a0aa-2d40ffc9f548&pf_rd_r=Y0BE6JXFF2KXBE2XR1B0&pd_rd_r=56bd5578-d05d-4961-ad87-936da0ec1df8&pd_rd_wg=Yi0UM');
+  cy.visit('https://www.amazon.es/gp/bestsellers/electronics/930859031?ref_=Oct_d_obs_S&pd_rd_w=ZfArL&pf_rd_p=62dfbf75-5eb5-4489-a0aa-2d40ffc9f548&pf_rd_r=TRAHT00GXN93G2T4DY2J&pd_rd_r=0d94b540-7365-4ef6-9ec4-a8e92a8117c0&pd_rd_wg=44QOH');
   cy.get('body').then(body => {
     if (body.find('.a-button-input').length) {
       cy.get('.a-button-input').click();

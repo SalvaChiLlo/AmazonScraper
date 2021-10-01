@@ -11,31 +11,38 @@ describe('visitamos pccomponentes para obtener datos de smartphones', () => {
       cy.get('.zg-item').eq(index).click();
       cookies();
 
-      cy.get('#productTitle').then(title => {
-        product.title = title.text().trim();
-      });
+      cy.get('body').then(body => {
+        if (body.find('#productTitle').length) {
+          cy.get('#productTitle').then(title => {
+            product.title = title.text().trim();
+          });
+        }
+      })
 
       cy.get('body').then(body => {
         if (body.find('#newBuyBoxPrice').length) {
           cy.get('#newBuyBoxPrice').then(price => {
             product.price = price.text().trim();
           })
-        } else {
+        } else if (body.find('#price_inside_buybox').length) {
           cy.get('#price_inside_buybox').then(price => {
             product.price = price.text().trim();
           })
         }
       })
 
-
-      cy.get('.imageThumbnail').each(thumb => {
-        cy.get('img.a-dynamic-image').eq(0).then(img => {
-          if (product.image) {
-            product.image.push(img.prop('src'));
-          } else {
-            product.image = [img.prop('src')]
-          }
-        });
+      cy.get('body').then(body => {
+        if (body.find('.imageThumbnail').length) {
+          cy.get('.imageThumbnail').each(thumb => {
+            cy.get('img.a-dynamic-image').eq(0).then(img => {
+              if (product.image) {
+                product.image.push(img.prop('src'));
+              } else {
+                product.image = [img.prop('src')]
+              }
+            });
+          })
+        }
       })
 
       cy.get('body').then(body => {
@@ -59,16 +66,21 @@ describe('visitamos pccomponentes para obtener datos de smartphones', () => {
         }
       })
 
-      cy.get('#feature-bullets > .a-unordered-list > li').each(description => {
-        cy.wrap(description).within(() => {
-          cy.get('.a-list-item').then(desc => {
-            if (product.description) {
-              product.description.push(desc.text().trim())
-            } else {
-              product.description = [desc.text().trim()]
-            }
+      cy.get('body').then(body => {
+        if (body.find('#feature-bullets > .a-unordered-list > li').length) {
+
+          cy.get('#feature-bullets > .a-unordered-list > li').each(description => {
+            cy.wrap(description).within(() => {
+              cy.get('.a-list-item').then(desc => {
+                if (product.description) {
+                  product.description.push(desc.text().trim())
+                } else {
+                  product.description = [desc.text().trim()]
+                }
+              })
+            })
           })
-        })
+        }
       })
 
       cy.get('body').then(() => {
