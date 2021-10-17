@@ -7,9 +7,9 @@ describe('visitamos pccomponentes para obtener datos de smartphones', () => {
 
   it('Recorremos los productos', () => {
     cy.get('.zg-item').then(items => {
-      items.toArray().slice(14, 49).forEach((item, index) => {
+      items.toArray().slice(21, 49).forEach((item, index) => {
 
-        index = index + 14;
+        index = index + 21;
         const product = {}
         cy.get('.zg-item').eq(index).click();
         cookies();

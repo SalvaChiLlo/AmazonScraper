@@ -7,9 +7,9 @@ describe('visitamos pccomponentes para obtener datos de smartphones', () => {
 
   it('Recorremos los productos', () => {
     cy.get('.zg-item').then(items => {
-      items.toArray().slice(20, 49).forEach((item, index) => {
+      items.toArray().slice(35, 49).forEach((item, index) => {
 
-        index = index + 20;
+        index = index + 35;
         const product = {}
         cy.get('.zg-item').eq(index).click();
         cookies();
@@ -99,7 +99,7 @@ describe('visitamos pccomponentes para obtener datos de smartphones', () => {
 })
 
 function visit() {
-  cy.visit('https://www.amazon.es/gp/bestsellers/electronics/934197031?ref_=Oct_d_obs_S&pd_rd_w=c60VU&pf_rd_p=62dfbf75-5eb5-4489-a0aa-2d40ffc9f548&pf_rd_r=60VPXY5ANYR904BCG8E7&pd_rd_r=1a2e6057-2f14-4611-98e9-9f18ee667a85&pd_rd_wg=phnbz');
+  cy.visit('https://www.amazon.es/gp/bestsellers/electronics/934197031/ref=zg_bs_pg_2?ie=UTF8&pg=2');
   cy.get('body').then(body => {
     if (body.find('.a-button-input').length) {
       cy.get('.a-button-input').click();
